@@ -25,35 +25,37 @@ func main() {
 	// convert the first char to an integer
 	lines, _ := strconv.Atoi(s.Text())
 
-	matrix := [][]int{}
-
-	// build the matrix
-	for l := 0; l < lines; l++ {
-		row := []int{}
-		// Loop throug each position
-		for p := 0; p < lines; p++ {
-			// Scan it
-			s.Scan()
-			// convert to int
-			v, _ := strconv.Atoi(s.Text())
-			row = append(row, v)
-		}
-		matrix = append(matrix, row)
-	}
-
 	lPosition := 0
 	lDiagonal := 0
+
 	rPosition := lines - 1
 	rDiagonal := 0
 
 	diff := 0
 
-	for _, v := range matrix {
-		// lines
-		lDiagonal += v[lPosition]
-		rDiagonal += v[rPosition]
+	// build the matrix
+	for l := 0; l < lines; l++ {
+		// Loop throug each position
+		for p := 0; p < lines; p++ {
 
+			// Scan it
+			s.Scan()
+			v, _ := strconv.Atoi(s.Text())
+
+			//
+			if p == rPosition {
+				rDiagonal += v
+			}
+
+			if p == lPosition {
+				lDiagonal += v
+			}
+		}
+
+		// move the left pointer one position on the left
 		lPosition++
+
+		// move the right pointer one position on the right
 		rPosition--
 	}
 
@@ -63,6 +65,6 @@ func main() {
 		diff = -diff
 	}
 
-	fmt.Println("Sum", diff)
+	fmt.Printf("%v", diff)
 
 }
