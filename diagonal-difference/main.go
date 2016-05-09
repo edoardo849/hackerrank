@@ -42,11 +42,14 @@ func main() {
 			s.Scan()
 			v, _ := strconv.Atoi(s.Text())
 
-			//
+			// checks if the current right position
+			// matches the diagonal
 			if p == rPosition {
 				rDiagonal += v
 			}
 
+			// checks if the current left position
+			// matches the diagonal
 			if p == lPosition {
 				lDiagonal += v
 			}
